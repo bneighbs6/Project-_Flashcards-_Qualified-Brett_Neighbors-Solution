@@ -11,11 +11,43 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Router>
-          <Route path="/">
-            <Home path="/" />
+          
+          <Route exact path="/">
+            <Home  />
+          </Route>
+
+          <Route exact path="/decks">
+            <Home />
           </Route>
           
-          <NotFound />
+          <Route path="/decks/:deckId/study">
+            <StudyDeck />
+          </Route>
+
+          <Route path="/decks/new">
+            <CreateDeck />
+          </Route>
+
+          <Route path="/decks/:deckId">
+            <ViewDeck />
+          </Route>
+
+          <Route path="/decks/:deckId/edit">
+            <EditDeck />
+          </Route>
+
+          <Route path="/decks/:deckId/cards/new">
+            <AddCard />
+          </Route>
+
+          <Route path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard /> 
+          </Route>
+          
+          <Route>
+            <NotFound />
+          </Route>
+          
         </Router>
           
       </div>
