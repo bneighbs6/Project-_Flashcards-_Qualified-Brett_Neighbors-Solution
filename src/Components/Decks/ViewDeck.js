@@ -71,7 +71,7 @@ export default function ViewDeck() {
                         <div key={index} className="card mb-3">
                         <div className="card-body">
                             <div className="row">
-                            </div>
+                        </div>
                             <div className="row">
                                 <p className="card-text col">
                                     {card.front}
