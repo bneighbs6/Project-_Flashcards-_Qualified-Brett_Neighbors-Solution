@@ -1,8 +1,10 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import Home from "./Home";
+import Home from "../Components/Home";
 import { BrowserRouter as Router, Route } from "react-router-dom/cjs/react-router-dom.min";
+import Study from "../Components/Study";
+import CreateDeck from "../Components/CreateDeck"
 
 function Layout() {
   return (
@@ -21,13 +23,13 @@ function Layout() {
           </Route>
           
           <Route path="/decks/:deckId/study">
-            <StudyDeck />
+            <Study />
           </Route>
-
+          
           <Route path="/decks/new">
             <CreateDeck />
           </Route>
-
+{/*
           <Route path="/decks/:deckId">
             <ViewDeck />
           </Route>
@@ -43,7 +45,7 @@ function Layout() {
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard /> 
           </Route>
-          
+  */}
           <Route>
             <NotFound />
           </Route>
