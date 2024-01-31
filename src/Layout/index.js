@@ -5,6 +5,10 @@ import Home from "../Components/Home";
 import { BrowserRouter as Router, Route } from "react-router-dom/cjs/react-router-dom.min";
 import Study from "../Components/Decks/Study";
 import CreateDeck from "../Components/Decks/CreateDeck"
+import ViewDeck from "../Components/Decks/ViewDeck";
+import EditDeck from "../Components/Decks/EditDeck";
+import AddCard from "../Components/Cards/AddCard";
+import EditCard from "../Components/Cards/EditCard"
 
 function Layout() {
   return (
@@ -29,7 +33,7 @@ function Layout() {
           <Route path="/decks/new">
             <CreateDeck />
           </Route>
-{/*
+
           <Route path="/decks/:deckId">
             <ViewDeck />
           </Route>
@@ -45,7 +49,7 @@ function Layout() {
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard /> 
           </Route>
-  */}
+  
           <Route>
             <NotFound />
           </Route>
