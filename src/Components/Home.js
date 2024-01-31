@@ -28,7 +28,7 @@ export default function Home() {
       <Link to="/decks/new" className="btn btn-secondary mb-3">
       <span className="oi oi-plus"></span> Create Deck</Link>
       {decks.map(deck => (
-           <div className="card mb-3">
+           <div className="card mb-3" key={deck.id}> {/* key={deck.id} removes child error from log */}
            <div className="card-body">
              <div className="row">
                <div className="col">
