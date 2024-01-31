@@ -3,8 +3,8 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../Components/Home";
 import { BrowserRouter as Router, Route } from "react-router-dom/cjs/react-router-dom.min";
-import Study from "../Components/Study";
-import CreateDeck from "../Components/CreateDeck"
+import Study from "../Components/Decks/Study";
+import CreateDeck from "../Components/Decks/CreateDeck"
 
 function Layout() {
   return (

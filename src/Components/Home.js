@@ -7,7 +7,7 @@ export default function Home() {
 
   const deleteDeckHandler = (deckId) => {
     const result = window.confirm(
-      "Delete this deck?\n\nYou will not be able to recover it."
+      "Delete this deck? You will not be able to recover it."
   )
   if (result) {
     deleteDeck(deckId).then(loadDecks())

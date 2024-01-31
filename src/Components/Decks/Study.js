@@ -1,6 +1,6 @@
 import { Link, useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
-import { readDeck } from "../utils/api"
+import { readDeck } from "../../utils/api"
 
 export default function StudyDeck() {
     const history = useHistory();
