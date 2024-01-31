@@ -1,6 +1,4 @@
-/**
- * updateDeck(updatedDeck)
- */
+
 import { Link, useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import { readDeck, updateDeck } from "../../utils/api"
