@@ -1,6 +1,6 @@
 import { Link, useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
-import { readDeck } from "../../utils/api"
+import { readDeck, updateDeck } from "../../utils/api"
 
 export default function EditDeck() {
   const history = useHistory();
@@ -8,6 +8,7 @@ export default function EditDeck() {
   const [deck, setDeck] = useState({cards: []});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [updatedDeck, setUpdatedDeck] = useState(null); // New state variable for the updated deck
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
@@ -18,6 +19,7 @@ export default function EditDeck() {
 
   useEffect(() => {
     loadDeck();
+    // eslint-disable-next-line 
   }, [deckId]);
 
   useEffect(() => {
@@ -34,7 +36,10 @@ export default function EditDeck() {
         "name": name,
         "description": description
     }
-    updateDeck(updatedDeck).then(() => history.push(`/decks/${deckId}`))
+    updateDeck(updatedDeck).then(() => {
+      setUpdatedDeck(updatedDeck); // Update the state with the updated deck
+      history.push(`/decks/${deckId}`);
+    })
   }
 
   const handleCancel = () => {

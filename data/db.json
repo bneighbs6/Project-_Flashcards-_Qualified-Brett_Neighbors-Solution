@@ -1,9 +1,9 @@
 {
   "decks": [
     {
+      "id": 2,
       "name": "React Router",
-      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
-      "id": 2
+      "description": "React Router is a collection of navigational components that compose declaratively with your application."
     },
     {
       "name": "Rendering in React",
