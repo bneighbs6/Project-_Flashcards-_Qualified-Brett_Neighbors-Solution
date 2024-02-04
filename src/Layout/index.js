@@ -46,12 +46,15 @@ function Layout() {
           <Route path="/decks/:deckId/cards/new">
             <AddCard />
           </Route>
+
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
+
           <Route>
             <NotFound />
           </Route>
+          
         </Switch>
       </div>
     </>
