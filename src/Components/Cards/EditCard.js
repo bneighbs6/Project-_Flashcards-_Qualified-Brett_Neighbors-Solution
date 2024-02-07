@@ -14,7 +14,7 @@ export default function EditCard() {
     useEffect(() => {
         readDeck(deckId).then(setDeck)
         readCard(cardId).then(setCard(cardId))
-        console.log(deckId, card)
+        // console.log(deckId, card)
       // eslint-disable-next-line 
       }, [deckId, cardId]);
 
