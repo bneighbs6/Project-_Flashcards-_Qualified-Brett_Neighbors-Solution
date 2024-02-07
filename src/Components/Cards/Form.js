@@ -2,7 +2,7 @@ import { useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import { readDeck, updateCard, readCard, createCard } from "../../utils/api"
 
-export default function Form({ submitting, edittedCard, cardName, cardDescription }) {
+export default function Form({ submitting,  cardName, cardDescription }) {
   const history = useHistory();
   const { cardId, deckId } = useParams();
   const [card, setCard] = useState({});
@@ -14,7 +14,7 @@ export default function Form({ submitting, edittedCard, cardName, cardDescriptio
 
   useEffect(() => {
     readDeck(deckId)
-    if (submitting.submitting === "edit card"){
+    if (submitting === "edit card"){
         readCard(cardId).then((card) => {
             setCard(card)
             setFront(card.front)
