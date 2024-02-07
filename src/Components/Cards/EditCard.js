@@ -6,7 +6,7 @@ import Form from "./Form";
 export default function EditCard() {
     const {deckId, cardId } = useParams();
     const [deck, setDeck] = useState({cards: []});
-    const [card, setCard] = useState([])
+    const [card, setCard] = useState(null)
 
 // Need to fetch the created card contents in 
 // order to edit the contents....
@@ -14,7 +14,7 @@ export default function EditCard() {
     useEffect(() => {
         readDeck(deckId).then(setDeck)
         readCard(cardId).then(setCard)
-        console.log(deckId, cardId)
+        console.log(deckId, card)
       // eslint-disable-next-line 
       }, [deckId, cardId]);
 
@@ -31,7 +31,7 @@ return (
     </nav>
     </div>
     <h1>Edit Card</h1>
-    <Form submitting="edit card"/>
+    <Form edittedCard={card} submitting="edit card"/>
 
 </>
 )

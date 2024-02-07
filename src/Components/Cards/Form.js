@@ -2,7 +2,7 @@ import { useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import { readDeck, updateCard, readCard, createCard } from "../../utils/api"
 
-export default function Form({ submitting, cardName, cardDescription }) {
+export default function Form({ submitting, edittedCard, cardName, cardDescription }) {
   const history = useHistory();
   const { cardId, deckId } = useParams();
   const [card, setCard] = useState({});
