@@ -2,7 +2,7 @@ import { useParams, useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import { readDeck, updateCard, readCard, createCard } from "../../utils/api"
 
-export default function Form({ submitting,  cardName, cardDescription }) {
+export default function Form({ submitting, cardName, cardDescription }) {
   const history = useHistory();
   const { cardId, deckId } = useParams();
   const [card, setCard] = useState({});
@@ -14,14 +14,14 @@ export default function Form({ submitting,  cardName, cardDescription }) {
 
   useEffect(() => {
     readDeck(deckId)
-    if (submitting === "edit card"){
-        readCard(cardId).then((card) => {
-            setCard(card)
-            setFront(card.front)
-            setBack(card.back)
-        })
+    if (submitting === "edit card") {
+      readCard(cardId).then((card) => {
+        setCard(card)
+        setFront(card.front)
+        setBack(card.back)
+      })
     }
-  // eslint-disable-next-line 
+    // eslint-disable-next-line 
   }, [deckId]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Form({ submitting,  cardName, cardDescription }) {
   }, [cardName, cardDescription]);
 
 
-// Submit Button handler  
+  // Submit Button handler  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Handle submit called.");
@@ -70,7 +70,7 @@ export default function Form({ submitting,  cardName, cardDescription }) {
       if (front && back) {
         createCard(deckId, newCard).then(() => history.push(`/decks/${deckId}`));
       }
-      
+
     }
   };
 
@@ -79,29 +79,29 @@ export default function Form({ submitting,  cardName, cardDescription }) {
   };
 
 
- // Save Button event handler 
+  // Save Button event handler 
   const handleSave = (e) => {
     e.preventDefault();
 
-      const newCard = {
-        front: front,
-        back: back,
-        deckId: deckId,
-      };
+    const newCard = {
+      front: front,
+      back: back,
+      deckId: deckId,
+    };
 
-      // if no front or back, stay on page
-      if (!front || !back) {
-        return;
-      }
+    // if no front or back, stay on page
+    if (!front || !back) {
+      return;
+    }
 
-      // creates card with new info, then resets form details to empty.
-      createCard(deckId, newCard).then(() => {
-        setCard(null);
-        setFront("");
-        setBack("");
-      }); 
+    // creates card with new info, then resets form details to empty.
+    createCard(deckId, newCard).then(() => {
+      setCard(null);
+      setFront("");
+      setBack("");
+    });
 
-      console.log("Handle Save called successfully")
+    console.log("Handle Save called successfully")
   }
 
   // Done Button event handler
@@ -111,8 +111,8 @@ export default function Form({ submitting,  cardName, cardDescription }) {
   const handleDone = (e) => {
     e.preventDefault();
     console.log("Handle done called.");
-    
-  
+
+
     const newCard = {
       front: front,
       back: back,
@@ -161,12 +161,16 @@ export default function Form({ submitting,  cardName, cardDescription }) {
       <button type="button" className="btn btn-secondary mr-2" onClick={handleCancel}>
         Cancel
       </button>
-      <button type="button" className="btn btn-outline-success mr-2" onClick={handleSave}>
-        Save
-      </button>
-      <button type="button" className="btn btn-outline-primary mr-2" onClick={handleDone}>
-        Done
-      </button>
+      {submitting === "add card" && (
+        <>
+          <button type="button" className="btn btn-outline-success mr-2" onClick={handleSave}>
+            Save
+          </button>
+          <button type="button" className="btn btn-outline-primary mr-2" onClick={handleDone}>
+            Done
+          </button>
+        </>
+      )}
       <button type="submit" className="btn btn-primary mr-2">
         Submit
       </button>
