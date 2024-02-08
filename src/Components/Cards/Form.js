@@ -34,6 +34,8 @@ export default function Form({ submitting,  cardName, cardDescription }) {
     // eslint-disable-next-line 
   }, [cardName, cardDescription]);
 
+
+// Submit Button handler  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Handle submit called.");
@@ -64,7 +66,11 @@ export default function Form({ submitting,  cardName, cardDescription }) {
         back: back,
         deckId: deckId,
       };
-      createCard(deckId, newCard).then(() => history.push(`/decks/${deckId}`));
+
+      if (front && back) {
+        createCard(deckId, newCard).then(() => history.push(`/decks/${deckId}`));
+      }
+      
     }
   };
 
@@ -72,12 +78,10 @@ export default function Form({ submitting,  cardName, cardDescription }) {
     history.push(`/decks/${deckId}`);
   };
 
+
+ // Save Button event handler 
   const handleSave = (e) => {
     e.preventDefault();
-    
-    if (!front || !back) {
-      return;
-    }
 
       const newCard = {
         front: front,
@@ -85,17 +89,43 @@ export default function Form({ submitting,  cardName, cardDescription }) {
         deckId: deckId,
       };
 
+      // if no front or back, stay on page
+      if (!front || !back) {
+        return;
+      }
+
+      // creates card with new info, then resets form details to empty.
       createCard(deckId, newCard).then(() => {
         setCard(null);
         setFront("");
         setBack("");
-      }); // need to clear form and restart process
+      }); 
 
       console.log("Handle Save called successfully")
   }
 
-  const handleDone = () => {
-    history.push(`decks/${deckId}`) // update the pushed url to correct url
+  // Done Button event handler
+  // if there is no front or back, then go back to deck screen
+  // if there is a front and back, create the card then go to deck screen. 
+
+  const handleDone = (e) => {
+    e.preventDefault();
+    console.log("Handle done called.");
+    
+  
+    const newCard = {
+      front: front,
+      back: back,
+      deckId: deckId,
+    };
+
+    if (!front || !back) {
+      history.push(`/decks/${deckId}`);
+    }
+
+    if (front && back) {
+      createCard(deckId, newCard).then(() => history.push(`/decks/${deckId}`));
+    }
   }
 
   return (
@@ -131,11 +161,11 @@ export default function Form({ submitting,  cardName, cardDescription }) {
       <button type="button" className="btn btn-secondary mr-2" onClick={handleCancel}>
         Cancel
       </button>
-      <button type="button" className="btn btn-outline-primary mr-2" onClick={handleDone}>
-        Done
-      </button>
       <button type="button" className="btn btn-outline-success mr-2" onClick={handleSave}>
         Save
+      </button>
+      <button type="button" className="btn btn-outline-primary mr-2" onClick={handleDone}>
+        Done
       </button>
       <button type="submit" className="btn btn-primary mr-2">
         Submit
