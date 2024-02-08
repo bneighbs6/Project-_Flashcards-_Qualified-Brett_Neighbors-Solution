@@ -72,6 +72,32 @@ export default function Form({ submitting,  cardName, cardDescription }) {
     history.push(`/decks/${deckId}`);
   };
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    
+    if (!front || !back) {
+      return;
+    }
+
+      const newCard = {
+        front: front,
+        back: back,
+        deckId: deckId,
+      };
+
+      createCard(deckId, newCard).then(() => {
+        setCard(null);
+        setFront("");
+        setBack("");
+      }); // need to clear form and restart process
+
+      console.log("Handle Save called successfully")
+  }
+
+  const handleDone = () => {
+    history.push(`decks/${deckId}`) // update the pushed url to correct url
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
@@ -85,7 +111,7 @@ export default function Form({ submitting,  cardName, cardDescription }) {
           name="front"
           rows="3"
           onChange={handleFrontChange}
-          defaultValue={front}
+          value={front}
         ></textarea>
       </div>
       <div className="mb-3">
@@ -99,11 +125,17 @@ export default function Form({ submitting,  cardName, cardDescription }) {
           name="back"
           rows="3"
           onChange={handleBackChange}
-          defaultValue={back}
+          value={back}
         ></textarea>
       </div>
       <button type="button" className="btn btn-secondary mr-2" onClick={handleCancel}>
         Cancel
+      </button>
+      <button type="button" className="btn btn-outline-primary mr-2" onClick={handleDone}>
+        Done
+      </button>
+      <button type="button" className="btn btn-outline-success mr-2" onClick={handleSave}>
+        Save
       </button>
       <button type="submit" className="btn btn-primary mr-2">
         Submit
